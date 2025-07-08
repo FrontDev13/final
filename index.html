@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brutal Shop | Home</title>
+    <title>ShopMania | Home</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script defer src="js/script.js"></script>
 </head>
 <body>
     <header>
-        <nav>
+        <a href="index.html" class="logo">ShopMania</a>
+        <nav id="main-nav">
             <a href="index.html">Home</a> |
             <a href="products.html">Products</a> |
-            <a href="about.html">About</a> |
-            <a href="contact.html">Contact</a>
+            <a href="contact.html">Contact</a> |
+            <a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
         </nav>
-        <!-- <div class="logo"><img src="img/logo.png" alt="logo"></div> -->
+        <button class="burger" id="burger-btn" aria-label="Open navigation"><img src="img/burgermenu.svg" alt="Menu" style="width:28px;height:28px;"></button>
+
     </header>
     <main>
-        <h1>Welcome to Brutal Shop</h1>
-        <p>This is the main page of your brutalistic online shop. Use the navigation above to explore products, learn about us, or contact us.</p>
+        <h1>Welcome to ShopMania</h1>
+        <p>This is the main page of your ShopMania online shop. Use the navigation above to explore products, learn about us, or contact us.</p>
+        <h2>Why Shop with Us?</h2>
+        <p>At ShopMania, we offer a wide variety of products at unbeatable prices. Our collection is updated regularly to bring you the latest trends and must-have items for every season.</p>
+        <p>Enjoy fast shipping, secure payment options, and a hassle-free return policy. Our customer support team is always ready to assist you with any questions or concerns.</p>
+        <p>Sign up for our newsletter to receive exclusive deals and stay informed about upcoming sales and new arrivals. Thank you for choosing ShopMania as your go-to online shopping destination!</p>
     </main>
     <footer>
-        <p>&copy; 2024 Brutal Shop</p>
+        <p>&copy; 2024 ShopMania</p>
     </footer>
 </body>
 </html>

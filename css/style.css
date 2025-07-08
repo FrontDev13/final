@@ -89,7 +89,11 @@ button, .btn {
   transition: background 0.1s, color 0.1s, box-shadow 0.1s;
 }
 
-button:hover, .btn:hover, button:focus, .btn:focus {
+button:focus, .btn:focus {
+  outline: none;
+}
+
+button:hover, .btn:hover {
   background: #fff;
   color: #000;
   box-shadow: 0 0 0 #000;
@@ -124,6 +128,36 @@ button:hover, .btn:hover, button:focus, .btn:focus {
   .product-item img {
     max-width: 90px;
     max-height: 90px;
+  }
+  .burger {
+    display: flex !important;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    border: 3px solid #fff;
+    margin: 0 12px;
+    padding: 12px 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  nav.open {
+    display: flex;
+  }
+  header {
+    flex-direction: row;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .logo {
+    font-size: 1em;
+  }
+  .burger {
+    margin-left: auto;
   }
 }
 
@@ -209,4 +243,69 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
   font-size: 1em;
   color: #c00;
   font-weight: bold;
+}
+
+/* Burger menu styles */
+.burger {
+  display: none;
+  background: #fff;
+  border: 3px solid #000;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0 0 auto;
+  position: static;
+  z-index: 200;
+  transition: box-shadow 0.1s;
+}
+.burger:hover, .burger:focus {
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px #fff;
+}
+.burger span {
+  display: block;
+  position: relative;
+  width: 28px;
+  height: 4px;
+  background: #fff;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.burger span::before, .burger span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 28px;
+  height: 4px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.2s, background 0.2s;
+}
+.burger span::before {
+  top: -9px;
+}
+.burger span::after {
+  top: 9px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  gap: 8px;
+  text-decoration: none;
 }

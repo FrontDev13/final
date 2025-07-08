@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Brutal Shop</title>
+  <title>Contact | ShopMania</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <nav>
+    <a href="index.html" class="logo">ShopMania</a>
+    <nav id="main-nav">
       <a href="index.html">Home</a> |
       <a href="products.html">Products</a> |
       <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact</a> |
+      <a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
     </nav>
+    <button class="burger" id="burger-btn" aria-label="Open navigation"><img src="img/burgermenu.svg" alt="Menu" style="width:28px;height:28px;"></button>
   </header>
   <main>
     <h1>Contact</h1>
@@ -39,7 +42,7 @@
     </form>
   </main>
   <footer>
-    <p>&copy; 2024 Brutal Shop</p>
+    <p>&copy; 2024 ShopMania</p>
   </footer>
   <script src="js/script.js"></script>
 </body>

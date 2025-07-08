@@ -1,4 +1,3 @@
-// Fetch and render products only on products.html
 if (window.location.pathname.endsWith('products.html')) {
   const productsList = document.getElementById('products-list');
   productsList.innerHTML = '<p>Loading products...</p>';
@@ -16,16 +15,25 @@ if (window.location.pathname.endsWith('products.html')) {
           <img src="${product.image}" alt="${product.title}" style="max-width:120px;max-height:120px;display:block;margin-bottom:8px;">
           <p><strong>Price:</strong> $${product.price}</p>
           <p>${product.description}</p>
+          <button class="btn add-to-cart" data-id="${product.id}">Add to Cart</button>
         </div>
         <hr>
       `).join('');
+      
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function() {
+          let count = Number(localStorage.getItem('cartCount') || 0);
+          count++;
+          localStorage.setItem('cartCount', count);
+          updateCartCount();
+        });
+      });
     })
     .catch(err => {
       productsList.innerHTML = '<p style="color:red">Failed to load products.</p>';
     });
 }
 
-// Contact form validation and show/hide password
 if (window.location.pathname.endsWith('contact.html')) {
   const form = document.getElementById('contact-form');
   const nameInput = document.getElementById('name');
@@ -35,7 +43,7 @@ if (window.location.pathname.endsWith('contact.html')) {
   const togglePasswordBtn = document.getElementById('toggle-password');
   const formMessage = document.getElementById('form-message');
 
-  // Show/hide password
+
   togglePasswordBtn.addEventListener('click', function() {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
@@ -50,14 +58,14 @@ if (window.location.pathname.endsWith('contact.html')) {
     e.preventDefault();
     formMessage.textContent = '';
     let valid = true;
-    // Name validation
+
     if (!nameInput.value.trim()) {
       valid = false;
       formMessage.textContent = 'Name is required.';
       nameInput.focus();
       return;
     }
-    // Email validation (regex)
+ 
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
       valid = false;
@@ -65,14 +73,14 @@ if (window.location.pathname.endsWith('contact.html')) {
       emailInput.focus();
       return;
     }
-    // Message validation
+
     if (!messageInput.value.trim()) {
       valid = false;
       formMessage.textContent = 'Message is required.';
       messageInput.focus();
       return;
     }
-    // Password validation (min 6 chars)
+
     if (!passwordInput.value.trim() || passwordInput.value.length < 6) {
       valid = false;
       formMessage.textContent = 'Password (min 6 chars) is required.';
@@ -86,4 +94,55 @@ if (window.location.pathname.endsWith('contact.html')) {
       togglePasswordBtn.textContent = 'Show';
     }
   });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const burger = document.getElementById('burger-btn');
+  const nav = document.getElementById('main-nav');
+  if (burger && nav) {
+    burger.addEventListener('click', function() {
+      nav.classList.toggle('open');
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+      });
+    });
+  }
+});
+
+
+function updateCartCount() {
+  const count = Number(localStorage.getItem('cartCount') || 0);
+  document.querySelectorAll('#cart-count').forEach(el => el.textContent = count);
+}
+updateCartCount();
+
+
+if (window.location.pathname.endsWith('cart.html')) {
+  const cartItems = document.getElementById('cart-items');
+  const cartEmpty = document.getElementById('cart-empty');
+
+  cartItems.innerHTML = `
+    <div class="product-item">
+      <h2>Brutal T-shirt</h2>
+      <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Brutal T-shirt" style="max-width:120px;max-height:120px;display:block;margin-bottom:8px;">
+      <p><strong>Price:</strong> $19.99</p>
+      <button class="btn pay-btn">Pay</button>
+    </div>
+  `;
+  cartEmpty.style.display = 'none';
+  
+  const payBtn = document.querySelector('.pay-btn');
+  if (payBtn) {
+    payBtn.addEventListener('click', function() {
+      alert('Thank you for your purchase!');
+      localStorage.setItem('cartCount', 0);
+      updateCartCount();
+      cartItems.innerHTML = '';
+      cartEmpty.style.display = '';
+    });
+  }
 }
